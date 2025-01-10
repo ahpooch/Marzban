@@ -71,6 +71,9 @@ if __name__ == "__main__":
 
             logger.warning(f"""
 {click.style('IMPORTANT!', blink=True, bold=True, fg="yellow")}
+If you're using Marzban with Traefik then it's ok to not specify {click.style('UVICORN_SSL_CERTFILE', italic=True, fg="magenta")} and {click.style('UVICORN_SSL_KEYFILE', italic=True, fg="magenta")}.
+So it will be available for external access.
+
 You're running Marzban without specifying {click.style('UVICORN_SSL_CERTFILE', italic=True, fg="magenta")} and {click.style('UVICORN_SSL_KEYFILE', italic=True, fg="magenta")}.
 The application will only be accessible through localhost. This means that {click.style('Marzban and subscription URLs will not be accessible externally', bold=True)}.
 
@@ -85,7 +88,7 @@ Use the following command:
 Then, navigate to {click.style(f'http://127.0.0.1:{UVICORN_PORT}', bold=True)} on your computer.
             """)
 
-            bind_args['host'] = '127.0.0.1'
+            bind_args['host'] = UVICORN_HOST
             bind_args['port'] = UVICORN_PORT
 
     if DEBUG:
